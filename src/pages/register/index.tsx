@@ -1,10 +1,20 @@
 
+import { GetStaticProps } from 'next';
 import { api } from '../../services/api';
-import styles from './styles.module.scss';
-import { RiArrowDownSLine } from "react-icons/ri";
 
-export default function Register(){
-  const listQueixas = api.get('/queixas');
+import styles from './styles.module.scss';
+
+interface Option {
+  label: string;
+  id: string;
+}
+
+type RegisterOptionsProps = {
+  optionsToQueixas: Option[];
+  optionsToDoencas: Option[];
+}
+
+export default function Register({optionsToQueixas, optionsToDoencas }: RegisterOptionsProps) {
 
   return (
     <section className={styles.medicalRecord}>
@@ -16,9 +26,9 @@ export default function Register(){
             <label htmlFor="#mainComplaint">Queixa Principal</label>
             <select id="mainComplaint">
               <option value="" selected disabled hidden>Selecione...</option>
-              <option value="Ford">Ford</option>
-              <option value="Volvo">Volvo</option>
-              <option value="Fiat">Fiat</option>
+              {optionsToQueixas.map(option => {
+                return <option key={option.id} value={option.label} >{option.label}</option>
+              })}
             </select>
           </div>
 
@@ -26,14 +36,14 @@ export default function Register(){
             <label htmlFor="#adultDiseases">Doenças Adulto</label>
             <select id="adultDiseases">
               <option value="" selected disabled hidden>Selecione...</option>
-              <option value="Volvo" >Volvo</option>
-              <option value="Ford" >Ford</option>
-              <option value="Fiat">Fiat</option>
-              <RiArrowDownSLine />
+              {optionsToDoencas.map(option => {
+                return <option key={option.id} value={option.label} >{option.label}</option>
+              })}
             </select>
           </div>
 
           <div className={styles.boxForm}>
+            <label>Histórico da Moléstia</label>
             <textarea 
               name="descriptionHistory" 
               cols={30} 
@@ -51,4 +61,31 @@ export default function Register(){
       </div>
     </section>
   );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const optionsQueixas = await api.get('/queixas');
+  const optionsDoencas = await api.get('/doencas');
+
+  const optionsToQueixas = optionsQueixas.data.data.map(option => {
+    return {
+      id: option.id,
+      label: option.label
+    };
+  });
+  
+  const optionsToDoencas = optionsDoencas.data.data.map(option => {
+    return {
+      label: option.label,
+      id: option.id
+    };
+  });
+
+  return {
+    props: {
+      optionsToQueixas,
+      optionsToDoencas,
+    },
+    revalidate: 60 * 60 * 8, // 8hours
+  }
 }
