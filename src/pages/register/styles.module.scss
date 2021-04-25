@@ -1,0 +1,58 @@
+.medicalRecord{
+  .container{
+    width: 100%;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  &__form{
+    border-radius: 5px;
+    background: white;
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+
+    span{
+      font-size: 14px;
+      background: #b3dddd;
+      color: #204646;
+      width: 100%;
+      max-width: 100%;
+      display: block;
+      padding: 10px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .boxForm{
+      padding: 10px;
+
+      label{
+        font-size: 14px;
+        display: block;
+        color: black;
+        padding-bottom: 5px;
+      }
+
+      select{
+        width: 100%;
+        max-width: 100%;
+        background: #f2f2f2;
+        border-radius: 5px;
+        height: 50px;
+        border: transparent;
+        padding: 10px;
+      }
+
+      textarea{
+        width: 100%;
+        max-width: 100%;
+        display: block;
+        border-radius: 5px;
+        background: #f2f2f2;
+        border: transparent;
+        padding: 10px;
+      }
+    }
+  }
+}
