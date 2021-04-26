@@ -1,12 +1,15 @@
 import { Header } from '../components/Header';
+import { RegisterProvider } from '../context/RegisterContext';
 
 import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }) {
   return (
     <main>
-      <Header />
-      <Component {...pageProps} />
+     <RegisterProvider>
+        <Header />
+        <Component {...pageProps} />
+     </RegisterProvider>
     </main>
   );
 }

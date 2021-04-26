@@ -49,6 +49,10 @@ body, input, textarea, button {
 
   transition: filter 0.2s;
 
+  &:disabled{
+    filter: brightness(0.8);
+  }
+
   &:hover {
     filter: brightness(0.9);
   }
