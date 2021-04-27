@@ -8,4 +8,89 @@
     font-weight: 500;
     margin-bottom: 10px;
   }
+
+  &__list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 750px;
+
+    @media(min-width: 768px){
+      flex-direction: initial;
+    }
+
+    .homepage__listItem{
+      display: flex;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 600px;
+      
+      .homepage__itemDate{
+        margin: 0 10px;
+        width: 100%;
+        max-width: 40px;
+        display: block;
+        text-transform: uppercase;
+
+        span{
+          display: block;
+          text-align: center;
+          color: var(--green-sublight);
+        }
+
+        strong{
+          font-size: 24px;
+          display: block;
+          color: var(--green-sublight);
+        }
+
+        p{
+          font-size: 12px;
+          color: var(--green-sublight);
+        }
+      }
+
+      .homepage__itemContent{
+        width: 100%;
+        max-width: 400px;
+        margin: 0 10px;
+        .homepage__contentHours{
+          background: #4db1b1;
+          padding: 10px;
+          border-radius: 10px 10px 0 0;
+          color: white;
+          font-weight: 100;
+          margin: 0;
+        }
+        
+        .homepage__contentTitle {
+          padding: 10px;
+          background: #b3dddd;
+          color: var(--green-sublight);
+          width: 100%;
+          display: block;
+        }
+
+        .homepage__contentBox{
+          width: 100%;
+          background: var(--white);
+          padding: 10px;
+          border-radius: 0 0 10px 10px;
+
+          .homepage__boxItem{
+            margin: 10px 0;
+
+            strong{
+              display: block;
+            }
+
+            p{
+              font-size: 14px;
+              padding-top: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

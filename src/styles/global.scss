@@ -10,6 +10,7 @@
   --text: #343434;
   --pink: #d20e50;
   --green-light: #b3dddd;
+  --green-sublight: #008f8f;
 }
 
 
@@ -40,7 +41,7 @@ body, input, textarea, button {
   background: var(--pink);
   padding: 15px;
   width: 100%;
-  max-width: 100%;
+  max-width: 450px;
   display: block;
   text-align: center;
   text-decoration: none;

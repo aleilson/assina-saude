@@ -5,14 +5,32 @@ interface Register {
   queixa: string;
   doencas: Array<[]>;
   historico: string;
+  created_at?: string;
 }
+
+interface ResponseRegister {
+  queixa: {
+    label: string;
+    id: number;
+  };
+  doencas: [
+    {
+      label: string;
+      id: number;
+    }
+  ];
+  historico: string;
+  created_at?: string;
+  _id?: string;
+}
+
 
 interface RegisterProviderProps {
   children: ReactNode;
 }
 
 interface RegistersContextData {
-  registers: Register[];
+  registers: ResponseRegister[];
   createRegister: (register: Register) => Promise<void>;
 }
 
@@ -21,7 +39,7 @@ const RegisterContext = createContext<RegistersContextData>(
 );
 
 export function RegisterProvider({ children }: RegisterProviderProps){
-  const [registers, setRegisters] = useState<Register[]>([]);
+  const [registers, setRegisters] = useState<ResponseRegister[]>([]);
 
   async function createRegister(registerInput: Register){
     const response = await api.post('/prontuario', {

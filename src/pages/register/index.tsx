@@ -1,7 +1,8 @@
 import { FormEvent, useEffect, useState } from 'react';
-
 import { GetStaticProps } from 'next';
 import { api } from '../../services/api';
+import { useRouter } from 'next/router'
+
 import { useRegisters } from '../../context/RegisterContext';
 
 import styles from './styles.module.scss';
@@ -18,6 +19,7 @@ type RegisterOptionsProps = {
 
 export default function Register({optionsToQueixas, optionsToDoencas }: RegisterOptionsProps) {
   const { createRegister } = useRegisters();
+  const router = useRouter();
 
   const [queixa, setQueixa] = useState('');
   const [doencas, setDoencas] = useState([]);
@@ -36,9 +38,14 @@ export default function Register({optionsToQueixas, optionsToDoencas }: Register
       setQueixa('');
       setDoencas([]);
       setHistorico('');
+      backToHome();
     } catch (error) {
       console.log(error)
     }
+  }
+
+  const backToHome = () => {
+    router.push('/')
   }
 
   useEffect(() => {
